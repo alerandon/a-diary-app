@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/inertia-react';
 
@@ -7,17 +7,33 @@ interface GuestProps {
 }
 
 export default function Guest({ children }: GuestProps) {
-  return (
-    <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-      <div>
-        <Link href="/">
-          <ApplicationLogo className="w-24 h-20 fill-current text-gray-500" />
-        </Link>
-      </div>
+  const [guestHeight, setGuestHeight] = useState(innerHeight);
 
-      <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-        {children}
+  const topbarRef = useRef(null);
+
+  useLayoutEffect(
+    () => setGuestHeight(innerHeight - topbarRef.current.clientHeight),
+    [],
+  );
+
+  return (
+    <>
+      <div ref={topbarRef} id="topbar" className="px-10 pt-6">
+        <div className="w-24 h-20">
+          <Link href="/">
+            <ApplicationLogo className="fill-current text-gray-500" />
+          </Link>
+        </div>
       </div>
-    </div>
+      <div
+        id="guest-body"
+        className="flex flex-col sm:justify-center items-center bg-gray-100"
+        style={{ minHeight: `${guestHeight}px` }}
+      >
+        <div className="w-full sm:max-w-md mt-6 bg-white overflow-hidden sm:rounded-lg">
+          {children}
+        </div>
+      </div>
+    </>
   );
 }
