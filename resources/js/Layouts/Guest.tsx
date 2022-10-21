@@ -30,9 +30,7 @@ export default function Guest({ children }: GuestProps) {
         className="flex flex-col sm:justify-center items-center bg-gray-100"
         style={{ minHeight: `${guestHeight}px` }}
       >
-        <div className="w-full sm:max-w-md mt-6 bg-white overflow-hidden sm:rounded-lg">
-          {children}
-        </div>
+        <div className="w-full sm:max-w-sm overflow-hidden">{children}</div>
       </div>
     </>
   );

@@ -43,7 +43,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
   return (
     <Guest>
       <Head title="Log in" />
-      <h2 className="text-[42px] font-bold text-center mb-12">
+      <h2 className="text-4xl font-bold text-center mb-12">
         Log in your account
       </h2>
       <div className="mx-6 my-4">
@@ -61,7 +61,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
               type="text"
               name="email"
               value={data.email}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10"
               autoComplete="username"
               isFocused={true}
               handleChange={onHandleChange}
@@ -77,7 +77,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
               type="password"
               name="password"
               value={data.password}
-              className="mt-1 block w-full"
+              className="mt-1 block w-full h-10"
               autoComplete="current-password"
               handleChange={onHandleChange}
             />
@@ -98,19 +98,28 @@ export default function Login({ status, canResetPassword }: LoginProps) {
           </div>
 
           <div className="flex items-center justify-between mt-8">
-            <Button className="w-28 text-center" processing={processing}>
+            <Button className="w-28 h-10 text-center" processing={processing}>
               Login
             </Button>
 
             {canResetPassword && (
               <Link
                 href={route('password.request')}
-                className="text-sm text-blue-600 hover:text-blue-900 font-semibold"
+                className="text-sm text-sky-600 hover:text-sky-900 font-semibold"
               >
                 Forgot your password?
               </Link>
             )}
           </div>
+          <h3 className="text-center text-gray-500 font-medium mt-10">
+            Don`t have an account?{' '}
+            <Link
+              href={route('register')}
+              className="text-sky-600 hover:text-sky-900 font-semibold"
+            >
+              Register here
+            </Link>
+          </h3>
         </form>
       </div>
     </Guest>
