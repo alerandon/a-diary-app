@@ -31,6 +31,7 @@ export default function Register() {
 
   const submit = e => {
     e.preventDefault();
+    console.log(data);
 
     post(route('register'));
   };
@@ -60,20 +61,20 @@ export default function Register() {
         </div>
 
         <div className="mt-4">
-          <Label forInput="name" value="Last name" />
+          <Label forInput="last_name" value="Last name" />
 
           <Input
             type="text"
-            name="name"
-            value={data.name}
+            name="last_name"
+            value={data.last_name}
             className="mt-1 block w-full h-10"
-            autoComplete="name"
+            autoComplete="last_name"
             isFocused={true}
             handleChange={onHandleChange}
             required
           />
 
-          <InputError message={errors.name} className="mt-2" />
+          <InputError message={errors.last_name} className="mt-2" />
         </div>
 
         <div className="mt-4">

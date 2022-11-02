@@ -4,7 +4,7 @@ import Guest from '@/Layouts/Guest';
 import Input from '@/Components/Input';
 import InputError from '@/Components/InputError';
 import Label from '@/Components/Label';
-import { Head, useForm } from '@inertiajs/inertia-react';
+import { Head, Link, useForm } from '@inertiajs/inertia-react';
 
 interface ResetPasswordProps {
   token: string;
@@ -38,13 +38,14 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
   return (
     <Guest>
       <Head title="Reset Password" />
+      <h2 className="text-[32px] font-bold text-center mb-6">
+        Enter your new password
+      </h2>
 
       <form onSubmit={submit}>
         <div>
-          <Label forInput="email" value="Email" />
-
           <Input
-            type="email"
+            type="hidden"
             name="email"
             value={data.email}
             className="mt-1 block w-full"
@@ -67,6 +68,9 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
             isFocused={true}
             handleChange={onHandleChange}
           />
+          <p className="text-xs font-medium text-gray-500">
+            Must be at least 8 characters.
+          </p>
 
           <InputError message={errors.password} className="mt-2" />
         </div>
@@ -82,15 +86,27 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
             autoComplete="new-password"
             handleChange={onHandleChange}
           />
+          <p className="text-xs font-medium text-gray-600">
+            Both passwords must match.
+          </p>
 
           <InputError message={errors.password_confirmation} className="mt-2" />
         </div>
 
-        <div className="flex items-center justify-end mt-4">
-          <Button className="ml-4" processing={processing}>
+        <div className="flex items-center justify-center my-10">
+          <Button className="h-10 text-center" processing={processing}>
             Reset Password
           </Button>
         </div>
+        <h3 className="text-center text-gray-600 font-medium mt-10">
+          Click here to{' '}
+          <Link
+            href={route('login')}
+            className="text-sky-600 hover:text-sky-900 font-semibold"
+          >
+            Login in your account
+          </Link>
+        </h3>
       </form>
     </Guest>
   );
