@@ -5,5 +5,5 @@ interface ApplicationLogoProps {
 }
 
 export default function ApplicationLogo({ className }: ApplicationLogoProps) {
-  return <img className={className} src="assets/images/logo.png" />;
+  return <img className={className} src="/assets/images/logo.png" />;
 }
