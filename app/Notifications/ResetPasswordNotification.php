@@ -43,8 +43,11 @@ class ResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification. the url is '.$this->url)
-                    ->action('Notification Action', $this->url)
-                    ->line('Thank you for using our application!');
+            ->greeting('Hey there my beloved friend!')
+            ->line('Click into the below button to reset your password')
+            ->action('Reset your password', $this->url)
+            ->line('Remember, this link will expire in 60 minutes.')
+            ->line('We hope to see you soon')
+            ->salutation("Take care around!");
     }
 }
